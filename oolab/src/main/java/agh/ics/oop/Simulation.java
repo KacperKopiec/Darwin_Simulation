@@ -9,37 +9,38 @@ import agh.ics.oop.model.util.MapVisualizer;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.Function;
 
-public class Simulation {
-    private final List<Animal> animals;
+public class Simulation<T, P> {
+    private final List<T> objects;
     private final List<MoveDirection> moves;
-    private final WorldMap map;
+    private final WorldMap<T, P> map;
 
-    public Simulation(List<Vector2d> animalPositions, List<MoveDirection> moves, WorldMap map) {
+    public Simulation(List<P> objectPositions, List<MoveDirection> moves, WorldMap <T, P> map, Function<P, T> genericConstructor) {
         this.moves = moves;
-        this.animals = new ArrayList<>();
+        this.objects = new ArrayList<>();
         this.map = map;
-        for (Vector2d position : animalPositions) {
-            Animal animal = new Animal(position);
-            if (this.map.place(animal)) {
-                this.animals.add(animal);
+        for (P objectPosition : objectPositions) {
+            T object = genericConstructor.apply(objectPosition);
+            if (this.map.place(object)) {
+                this.objects.add(object);
             }
         }
     }
 
     public void run() {
-        if (animals.isEmpty()) return;
+        if (objects.isEmpty()) return;
 
-        int currentAnimal = 0;
+        int currentObject = 0;
         for (MoveDirection move: moves) {
-            this.map.move(this.animals.get(currentAnimal), move);
+            this.map.move(this.objects.get(currentObject), move);
             System.out.println(this.map);
-            currentAnimal = (currentAnimal + 1) % animals.size();
+            currentObject = (currentObject + 1) % objects.size();
         }
     }
 
-    public List<Animal> getAnimals() {
-        return new ArrayList<>(this.animals);
+    public List<T> getObjects() {
+        return new ArrayList<>(this.objects);
     }
 
     public List<MoveDirection> getMoves() {
