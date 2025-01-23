@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="agh.ics.oop.OptionsParserTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2024-11-24T22:11:08" hostname="kacperZen" time="0.035">
+  <properties/>
+  <testcase name="emptyMoves()" classname="agh.ics.oop.OptionsParserTest" time="0.021"/>
+  <testcase name="invalidMove()" classname="agh.ics.oop.OptionsParserTest" time="0.002"/>
+  <testcase name="moveForward()" classname="agh.ics.oop.OptionsParserTest" time="0.002"/>
+  <testcase name="allDirections()" classname="agh.ics.oop.OptionsParserTest" time="0.001"/>
+  <testcase name="moveLeft()" classname="agh.ics.oop.OptionsParserTest" time="0.001"/>
+  <testcase name="moveRight()" classname="agh.ics.oop.OptionsParserTest" time="0.001"/>
+  <testcase name="moveBackward()" classname="agh.ics.oop.OptionsParserTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
