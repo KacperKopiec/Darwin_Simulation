@@ -3,9 +3,10 @@ package agh.ics.oop.model;
 public class Water implements WorldElement {
     private final Vector2d position;
 
-    public Water(Vector2d position){
+    public Water(Vector2d position) {
         this.position = position;
     }
+
     @Override
     public String toString() {
         return "~";
@@ -17,8 +18,8 @@ public class Water implements WorldElement {
     }
 
     @Override
-    public String toRegionStyle(String backgroundColor) {
-        return "-fx-background-color: " + backgroundColor +";"+
+    public String toRegionStyle(String backgroundColor) { // czy to zadanie dla modelu?
+        return "-fx-background-color: " + backgroundColor + ";" +
                 "-fx-background-size: cover; " +
                 "-fx-background-position: center;";
     }

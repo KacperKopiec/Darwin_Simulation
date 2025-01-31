@@ -23,20 +23,21 @@ public class MenuPresenter {
     @FXML
     private VBox vBox;
     @FXML
-    private Label errorMessage,animalsLabel,grassLabel,freePositionLabel,energyLabel,lifetimeLabel,childrenLabel,genotypeLabel;
+    private Label errorMessage, animalsLabel, grassLabel, freePositionLabel, energyLabel, lifetimeLabel, childrenLabel, genotypeLabel;
     @FXML
-    private VBox configBox,statisticsBox;
+    private VBox configBox, statisticsBox;
     @FXML
     private Spinner<Integer> mapWidth, mapHeight, baseGrassNumber, grassPerDay, basePopulation, baseEnergy, readyToParent, childCost, minMutations, maxMutations, genotypeLength, numberOfReservoirs, grassCalory;
     @FXML
-    private CheckBox oldNotGold,saveStats;
+    private CheckBox oldNotGold, saveStats;
     @FXML
     private TextField nameOfConfiguration;
     @FXML
     private ComboBox<String> configurations;
 
     private final static Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private final static Type TYPE = new TypeToken<Map<String, Map<String, Integer>>>(){}.getType();
+    private final static Type TYPE = new TypeToken<Map<String, Map<String, Integer>>>() {
+    }.getType();
 
     @FXML
     public void initialize() {
@@ -58,7 +59,7 @@ public class MenuPresenter {
     }
 
     private void setConfig() {
-        this.config = new SimulationConfig(basePopulation.getValue(),baseGrassNumber.getValue(),grassPerDay.getValue(),mapWidth.getValue(),mapHeight.getValue(),genotypeLength.getValue(),childCost.getValue(),minMutations.getValue(),maxMutations.getValue(),grassCalory.getValue(),baseEnergy.getValue(),readyToParent.getValue(),numberOfReservoirs.getValue(),oldNotGold.isSelected(),saveStats.isSelected());
+        this.config = new SimulationConfig(basePopulation.getValue(), baseGrassNumber.getValue(), grassPerDay.getValue(), mapWidth.getValue(), mapHeight.getValue(), genotypeLength.getValue(), childCost.getValue(), minMutations.getValue(), maxMutations.getValue(), grassCalory.getValue(), baseEnergy.getValue(), readyToParent.getValue(), numberOfReservoirs.getValue(), oldNotGold.isSelected(), saveStats.isSelected());
     }
 
     private boolean verifyConfig(SimulationConfig config) {
@@ -106,8 +107,7 @@ public class MenuPresenter {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             errorMessage.setText("Invalid input data");
         }
     }

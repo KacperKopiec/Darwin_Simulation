@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 public class WaterReservoir {
-    private final Map<Vector2d,List<Water>> waters;
-    private final static List<Vector2d> FIRST_STAGE_VECTORS = List.of(new Vector2d(0, 1), new Vector2d(0, -1),new Vector2d(1, 0),new Vector2d(-1, 0));
-    private final static List<Vector2d> SECOND_STAGE_VECTORS = List.of(new Vector2d(1, 1), new Vector2d(1, -1),new Vector2d(-1, 1),new Vector2d(-1, -1),new Vector2d(0, 2), new Vector2d(0, -2),new Vector2d(2, 0),new Vector2d(-2, 0));
+    private final Map<Vector2d, List<Water>> waters;
+    private final static List<Vector2d> FIRST_STAGE_VECTORS = List.of(new Vector2d(0, 1), new Vector2d(0, -1), new Vector2d(1, 0), new Vector2d(-1, 0));
+    private final static List<Vector2d> SECOND_STAGE_VECTORS = List.of(new Vector2d(1, 1), new Vector2d(1, -1), new Vector2d(-1, 1), new Vector2d(-1, -1), new Vector2d(0, 2), new Vector2d(0, -2), new Vector2d(2, 0), new Vector2d(-2, 0));
     private final List<Water> firstStageWaters = new ArrayList<>();
     private final List<Water> secondStageWaters = new ArrayList<>();
     private int phase = 0;
-    private int dayOfCycle=0;
+    private int dayOfCycle = 0;
 
     private final Runnable[] tideCycle = new Runnable[]{
             () -> {},
@@ -21,7 +21,8 @@ public class WaterReservoir {
             () -> {},
             () -> {},
             this::lowTide,
-            this::lowTide};
+            this::lowTide
+    };
 
     public WaterReservoir(Vector2d centerPosition, Map<Vector2d, List<Water>> waters) {
         this.waters = waters;
@@ -33,12 +34,11 @@ public class WaterReservoir {
         }
     }
 
-    private void highTide(){
+    private void highTide() {
         if (phase == 0) {
             place(firstStageWaters);
             phase = 1;
-        }
-        else {
+        } else {
             place(secondStageWaters);
         }
     }
@@ -47,8 +47,7 @@ public class WaterReservoir {
         for (Water water : stageWaters) {
             if (waters.containsKey(water.getPosition())) {
                 waters.get(water.getPosition()).add(water);
-            }
-            else {
+            } else {
                 List<Water> waterList = new ArrayList<>();
                 waterList.add(water);
                 waters.put(water.getPosition(), waterList);
@@ -56,7 +55,7 @@ public class WaterReservoir {
         }
     }
 
-    private void remove(List<Water> stageWaters){
+    private void remove(List<Water> stageWaters) {
         for (Water water : stageWaters) {
             waters.get(water.getPosition()).remove(water);
             if (waters.get(water.getPosition()).isEmpty()) {
@@ -65,11 +64,10 @@ public class WaterReservoir {
         }
     }
 
-    private void lowTide(){
+    private void lowTide() {
         if (phase == 0) {
             remove(firstStageWaters);
-        }
-        else {
+        } else {
             remove(secondStageWaters);
             phase = 0;
         }

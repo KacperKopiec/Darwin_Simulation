@@ -5,6 +5,7 @@ import agh.ics.oop.model.records.SubjectStatistics;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class AnimalTest {
     @Test
     public void moveTest() {

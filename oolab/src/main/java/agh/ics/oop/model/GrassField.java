@@ -10,7 +10,7 @@ import java.util.*;
 
 public class GrassField implements WorldMap {
     protected final Map<Vector2d, Grass> grasses;
-    private final Map<Vector2d,List<Water>> waters = new HashMap<>();
+    private final Map<Vector2d, List<Water>> waters = new HashMap<>();
     private final Map<Vector2d, ArrayList<Animal>> animals = new HashMap<Vector2d, ArrayList<Animal>>();
     private final List<WaterReservoir> reservoirs = new ArrayList<>();
     private final List<Animal> aliveAnimals = new ArrayList<Animal>();
@@ -65,10 +65,10 @@ public class GrassField implements WorldMap {
         }
 
         //create reservoirs
-        RandomPositionGenerator waterGenerator = new RandomPositionGenerator(config.mapWidth(),config.mapHeight(), config.numberOfReservoirs());
+        RandomPositionGenerator waterGenerator = new RandomPositionGenerator(config.mapWidth(), config.mapHeight(), config.numberOfReservoirs());
         for (Vector2d position : waterGenerator) {
-            this.reservoirs.add(new WaterReservoir(position,this.waters));
-            waters.put(position,new ArrayList<Water>());
+            this.reservoirs.add(new WaterReservoir(position, this.waters));
+            waters.put(position, new ArrayList<Water>());
             waters.get(position).add(new Water(position));
         }
     }
@@ -78,14 +78,13 @@ public class GrassField implements WorldMap {
         if (waters.containsKey(position)) return waters.get(position).getFirst();
 
         List<Animal> list = animals.get(position);
-        if (list!=null && !list.isEmpty()) {
-            Animal popularGenotypeCarrier=null;
+        if (list != null && !list.isEmpty()) {
+            Animal popularGenotypeCarrier = null;
             for (Animal animal : list) {
                 if (animal.getGenotype().equals(mostPopularGenotype)) popularGenotypeCarrier = animal;
             }
-            return popularGenotypeCarrier!=null ? popularGenotypeCarrier : list.getFirst();
-        }
-        else return grasses.getOrDefault(position, null);
+            return popularGenotypeCarrier != null ? popularGenotypeCarrier : list.getFirst();
+        } else return grasses.getOrDefault(position, null);
     }
 
     @Override
@@ -99,12 +98,12 @@ public class GrassField implements WorldMap {
     }
 
     private Animal createAnimal(Animal parent1, Animal parent2) {
-        Genotype genotype = new Genotype(parent1, parent2, config.minMutations(),config.maxMutations());
+        Genotype genotype = new Genotype(parent1, parent2, config.minMutations(), config.maxMutations());
         genotypePopularity.put(genotype, genotypePopularity.getOrDefault(genotype, 0) + 1);
         if (mostPopularGenotype == null || genotypePopularity.get(genotype) > genotypePopularity.get(mostPopularGenotype)) {
             mostPopularGenotype = genotype;
         }
-        return new Animal(parent1.getPosition(), genotype,config.childCost() * 2, config.oldNotGold(), (int)(Math.random()*(parent1.getGenotype().getSize())));
+        return new Animal(parent1.getPosition(), genotype, config.childCost() * 2, config.oldNotGold(), (int) (Math.random() * (parent1.getGenotype().getSize())));
     }
 
     protected void movingStage() {
@@ -113,11 +112,11 @@ public class GrassField implements WorldMap {
         }
     }
 
-    protected void eatingStage(){
+    protected void eatingStage() {
         List<Grass> eatenGrass = new ArrayList<>();
-        for (Grass grass : grasses.values()){
+        for (Grass grass : grasses.values()) {
             List<Animal> animalsAtPosition = animals.get(grass.getPosition());
-            if (animalsAtPosition != null){
+            if (animalsAtPosition != null) {
                 eatenGrass.add(grass);
             }
         }
@@ -147,7 +146,7 @@ public class GrassField implements WorldMap {
             // usuwamy zwierzęta które znalazły się w wodzie
             if (waters.containsKey(position)) {
                 for (Animal animal : animalsAtPosition) {
-                    if (animal.getEnergy()>0){
+                    if (animal.getEnergy() > 0) {
                         animal.unlive(lordsDay);
                         recentlyDead++;
                         deadAnimals.add(animal);
@@ -156,7 +155,7 @@ public class GrassField implements WorldMap {
             }
 
             // usuwamy zwierzęta bez energii
-            for (Animal animal : animalsAtPosition){
+            for (Animal animal : animalsAtPosition) {
                 if (animal.getEnergy() <= 0) {
                     animal.unlive(lordsDay);
                     recentlyDead++;
@@ -165,8 +164,8 @@ public class GrassField implements WorldMap {
             }
         }
 
-        for (int i = 0; i < recentlyDead; i++){
-            Animal animal = deadAnimals.get(deadAnimals.size()-1-i);
+        for (int i = 0; i < recentlyDead; i++) {
+            Animal animal = deadAnimals.get(deadAnimals.size() - 1 - i);
             List<Animal> animalsAtPosition = animals.get(animal.getPosition());
             animalsAtPosition.remove(animal);
             aliveAnimals.remove(animal);
@@ -197,7 +196,7 @@ public class GrassField implements WorldMap {
                     }
                 }
 
-                if (bestAnimal2.getEnergy() >= config.readyToParent()){
+                if (bestAnimal2.getEnergy() >= config.readyToParent()) {
                     Animal babyAnimal = createAnimal(bestAnimal1, bestAnimal2);
                     bestAnimal1.giveBirth(config.childCost(), babyAnimal);
                     bestAnimal2.giveBirth(config.childCost(), babyAnimal);
@@ -208,7 +207,7 @@ public class GrassField implements WorldMap {
         }
     }
 
-    protected void pollinationStage(){
+    protected void pollinationStage() {
         for (int numberOfGrass = 0; numberOfGrass < config.grassPerDay(); numberOfGrass++) {
             try {
                 Grass grass = grassGenerator.iterator().next();
@@ -219,13 +218,13 @@ public class GrassField implements WorldMap {
         }
     }
 
-    private void waterCycle(){
-        for (WaterReservoir reservoir: this.reservoirs){
+    private void waterCycle() {
+        for (WaterReservoir reservoir : this.reservoirs) {
             reservoir.updateSize();
         }
     }
 
-    public void dayPasses(){
+    public void dayPasses() {
         this.waterCycle();
         this.clearingStage();
         this.movingStage();
@@ -243,11 +242,11 @@ public class GrassField implements WorldMap {
 
     @Override
     public boolean aroundTheWorld(Vector2d position) {
-        return (position.getY() >= leftDownCorner.getY() && position.getY()<= rightUpCorner.getY());
+        return (position.getY() >= leftDownCorner.getY() && position.getY() <= rightUpCorner.getY());
     }
 
     @Override
-    public void place(Animal animal)  {
+    public void place(Animal animal) {
         Vector2d position = animal.getPosition();
         if (!animals.containsKey(position)) animals.put(position, new ArrayList<>());
         this.animals.get(position).add(animal);
@@ -293,19 +292,19 @@ public class GrassField implements WorldMap {
             listener.mapChanged(this, "Another day has passed");
     }
 
-    public Statistics getStatistics(){
+    public Statistics getStatistics() {
         int animalsNumber = this.aliveAnimals.size();
         int grassNumber = this.grasses.size();
-        int freePositionsNumber = config.mapWidth()*config.mapHeight();
-        int sumOfEnergy=0;
-        int sumOfAge=0;
-        int sumOfChildren=0;
+        int freePositionsNumber = config.mapWidth() * config.mapHeight();
+        int sumOfEnergy = 0;
+        int sumOfAge = 0;
+        int sumOfChildren = 0;
 
         for (Animal animal : aliveAnimals) {
-            sumOfEnergy+=animal.getEnergy();
-            sumOfChildren+=animal.getNumberOfChildren();
+            sumOfEnergy += animal.getEnergy();
+            sumOfChildren += animal.getNumberOfChildren();
         }
-        for (Animal animal : deadAnimals){
+        for (Animal animal : deadAnimals) {
             sumOfAge += animal.getAge();
         }
 
@@ -320,7 +319,7 @@ public class GrassField implements WorldMap {
                 }
             }
         }
-        return new Statistics(animalsNumber,grassNumber,freePositionsNumber,averageEnergy,averageLifetime,averageChildren,mostPopularGenotype);
+        return new Statistics(animalsNumber, grassNumber, freePositionsNumber, averageEnergy, averageLifetime, averageChildren, mostPopularGenotype);
     }
 
     public void setSubjectAnimal(Vector2d position) {
@@ -333,7 +332,7 @@ public class GrassField implements WorldMap {
         return subjectAnimal;
     }
 
-    public int getDayOfSimulation(){
+    public int getDayOfSimulation() {
         return this.lordsDay;
     }
 }

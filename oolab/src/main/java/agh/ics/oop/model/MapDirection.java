@@ -2,11 +2,11 @@ package agh.ics.oop.model;
 
 public enum MapDirection {
     NORTH("^", new Vector2d(0, 1)),
-    NORTH_EAST("/", new Vector2d(1,1)),
-    NORTH_WEST("\\", new Vector2d(-1,1)),
+    NORTH_EAST("/", new Vector2d(1, 1)),
+    NORTH_WEST("\\", new Vector2d(-1, 1)),
     SOUTH("v", new Vector2d(0, -1)),
-    SOUTH_EAST("/", new Vector2d(1,-1)),
-    SOUTH_WEST("\\", new Vector2d(-1,-1)),
+    SOUTH_EAST("/", new Vector2d(1, -1)),
+    SOUTH_WEST("\\", new Vector2d(-1, -1)),
     WEST("<", new Vector2d(-1, 0)),
     EAST(">", new Vector2d(1, 0));
 

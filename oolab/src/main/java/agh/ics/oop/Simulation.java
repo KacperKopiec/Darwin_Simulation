@@ -23,12 +23,12 @@ public class Simulation extends Thread {
         this.config = config;
         this.map = new GrassField(config);
 
-        if (config.saveStats()){
+        if (config.saveStats()) {
             try {
                 if (!Files.exists(Paths.get(statsFilePath))) {
                     try (BufferedWriter writer = new BufferedWriter(new FileWriter(statsFilePath, false))) {
                         writer.write("Day of Simulation,Animals,Grass,Free Positions,Avg Energy,Avg Lifetime,Avg Children,Most Popular Genotype");
-                        writer.newLine();
+                        writer.newLine(); // czy to zadanie dla symulacji?
                     }
                 }
             } catch (IOException e) {
@@ -37,7 +37,7 @@ public class Simulation extends Thread {
         }
     }
 
-    public void saveStatistics(Statistics statistics){
+    public void saveStatistics(Statistics statistics) { // czy to zadanie dla symulacji?
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(statsFilePath, true))) {
             String line = String.format("%d,%d,%d,%d,%.2f,%.2f,%.2f,%s",
                     map.getDayOfSimulation(),
@@ -79,7 +79,7 @@ public class Simulation extends Thread {
     @Override
     public void run() {
         try {
-            while(!Thread.currentThread().isInterrupted()) {
+            while (!Thread.currentThread().isInterrupted()) {
                 synchronized (lock) {
                     while (!running) {
                         lock.wait();
@@ -87,14 +87,14 @@ public class Simulation extends Thread {
                 }
                 this.map.dayPasses();
 
-                if (config.saveStats()){
+                if (config.saveStats()) {
                     saveStatistics(this.map.getStatistics());
                 }
 
                 Thread.sleep(1000);
             }
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+            Thread.currentThread().interrupt(); // jaki jest sens wysyłać interrupt sobie samemu?
         }
     }
 }

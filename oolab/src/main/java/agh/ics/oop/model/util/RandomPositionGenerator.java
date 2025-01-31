@@ -9,6 +9,7 @@ import static java.util.Collections.swap;
 public class RandomPositionGenerator implements Iterable<Vector2d> {
     private final int grassCount;
     private final List<Vector2d> permutationOfPositions;
+
     public RandomPositionGenerator(int maxWidth, int maxHeight, int grassCount) {
         this.grassCount = grassCount;
         this.permutationOfPositions = new ArrayList<>(maxWidth * maxHeight);
@@ -23,7 +24,7 @@ public class RandomPositionGenerator implements Iterable<Vector2d> {
     public Iterator<Vector2d> iterator() {
         return new Iterator<Vector2d>() {
             private int generatedCount = 0;
-            private final Random rand = new Random();
+            private final Random rand = new Random(); // nowy obiekt co wywołanie?
 
             @Override
             public boolean hasNext() {

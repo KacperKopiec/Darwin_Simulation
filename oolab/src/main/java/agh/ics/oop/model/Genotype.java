@@ -19,7 +19,7 @@ public class Genotype {
         this.genes = genes;
     }
 
-    public Genotype(Animal parent1, Animal parent2, int lowerBoundOfMutations, int upperBoundOfMutations) {
+    public Genotype(Animal parent1, Animal parent2, int lowerBoundOfMutations, int upperBoundOfMutations) { // genotyp powstaje z dwóch zwierząt, czy dwóch genotypów?
         // swap parents to assure parent1 is stronger
         if (parent1.getEnergy() < parent2.getEnergy()) {
             Animal swapReference = parent1;

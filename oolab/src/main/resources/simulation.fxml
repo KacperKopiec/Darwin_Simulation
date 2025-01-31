@@ -18,26 +18,28 @@
             minHeight="800.0" minWidth="1200.0"
             fx:controller="agh.ics.oop.presenter.SimulationPresenter">
     <center>
-        <HBox spacing="10" alignment="CENTER" >
+        <HBox spacing="10" alignment="CENTER">
             <VBox fx:id="statisticsBox" spacing="10" alignment="CENTER" style="-fx-font-size: 20px;">
                 <HBox spacing="5" alignment="CENTER_LEFT">
-                    <LineChart fx:id="animalPopulationChart" animated="false" style="-fx-max-width: 250px; -fx-max-height: 100px">
+                    <LineChart fx:id="animalPopulationChart" animated="false"
+                               style="-fx-max-width: 250px; -fx-max-height: 100px">
                         <xAxis>
                             <NumberAxis/>
                         </xAxis>
                         <yAxis>
-                            <NumberAxis  />
+                            <NumberAxis/>
                         </yAxis>
                     </LineChart>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER">
-                    <Label text="Animal population: " />
+                    <Label text="Animal population: "/>
                     <Label fx:id="animalsLabel" text="0"/>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT">
-                    <LineChart fx:id="grassPopulationChart" animated="false" style="-fx-max-width: 250px; -fx-max-height: 100px">
+                    <LineChart fx:id="grassPopulationChart" animated="false"
+                               style="-fx-max-width: 250px; -fx-max-height: 100px">
                         <xAxis>
-                            <NumberAxis />
+                            <NumberAxis/>
                         </xAxis>
                         <yAxis>
                             <NumberAxis/>
@@ -45,28 +47,28 @@
                     </LineChart>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER">
-                    <Label text="Grass population: " />
-                    <Label fx:id="grassLabel" text="0" />
+                    <Label text="Grass population: "/>
+                    <Label fx:id="grassLabel" text="0"/>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="Number of free positions: " />
-                    <Label fx:id="freePositionLabel" text="0" />
+                    <Label text="Number of free positions: "/>
+                    <Label fx:id="freePositionLabel" text="0"/>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="Average energy:" />
-                    <Label fx:id="energyLabel" text="0" />
+                    <Label text="Average energy:"/>
+                    <Label fx:id="energyLabel" text="0"/>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="Average lifetime:" />
-                    <Label fx:id="lifetimeLabel" text="0" />
+                    <Label text="Average lifetime:"/>
+                    <Label fx:id="lifetimeLabel" text="0"/>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="Average number of children:" />
-                    <Label fx:id="childrenLabel" text="0" />
+                    <Label text="Average number of children:"/>
+                    <Label fx:id="childrenLabel" text="0"/>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label text="Most popular genotype:" />
-                    <Label fx:id="genotypeLabel" text="0" />
+                    <Label text="Most popular genotype:"/>
+                    <Label fx:id="genotypeLabel" text="0"/>
                 </HBox>
                 <HBox spacing="5" alignment="CENTER_LEFT">
                     <Button text="Resume" onAction="#onClickResume"/>
@@ -79,42 +81,42 @@
                     <Button text="Genotype carriers" onAction="#onClickShowGenotype"/>
                 </HBox>
             </VBox>
-            <GridPane fx:id = "mapGrid" gridLinesVisible="true" alignment="CENTER"/>
-        <VBox fx:id="inspectionBox" spacing="10" alignment="CENTER" style="-fx-font-size: 25px;">
+            <GridPane fx:id="mapGrid" gridLinesVisible="true" alignment="CENTER"/>
+            <VBox fx:id="inspectionBox" spacing="10" alignment="CENTER" style="-fx-font-size: 25px;">
 
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Animal age: " />
-                <Label fx:id="subjectAgeLabel" text="" />
-            </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Animal energy:" />
-                <Label fx:id="subjectEnergyLabel" text="" />
-            </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Grass consumed:" />
-                <Label fx:id="grassConsumedLabel" text="" />
-            </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Children:" />
-                <Label fx:id="subjectChildrenLabel" text="" />
-            </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Descendants:" />
-                <Label fx:id="descendantsLabel" text="" />
-            </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Genotype:" />
-                <Label fx:id="subjectGenotypeLabel" text="" />
-            </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Active part: " />
-                <Label fx:id="activeGeneLabel" text="" />
-            </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Day of death: " />
-                <Label fx:id="dayOfDeathLabel" text="" />
-            </HBox>
-        </VBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Animal age: "/>
+                    <Label fx:id="subjectAgeLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Animal energy:"/>
+                    <Label fx:id="subjectEnergyLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Grass consumed:"/>
+                    <Label fx:id="grassConsumedLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Children:"/>
+                    <Label fx:id="subjectChildrenLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Descendants:"/>
+                    <Label fx:id="descendantsLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Genotype:"/>
+                    <Label fx:id="subjectGenotypeLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Active part: "/>
+                    <Label fx:id="activeGeneLabel" text=""/>
+                </HBox>
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Day of death: "/>
+                    <Label fx:id="dayOfDeathLabel" text=""/>
+                </HBox>
+            </VBox>
         </HBox>
     </center>
 </BorderPane>

@@ -6,7 +6,7 @@ public class Grass implements WorldElement {
 
     public Grass(Vector2d position) {
         this.position = position;
-        this.flowerPath = "url('flower" + (int)(Math.random() * 12 + 1) + ".png');";
+        this.flowerPath = "url('flower" + (int) (Math.random() * 12 + 1) + ".png');";
     }
 
     @Override
@@ -21,7 +21,7 @@ public class Grass implements WorldElement {
 
     @Override
     public String toRegionStyle(String backgroundColor) {
-        return "-fx-background-color: " + backgroundColor + ";"+
+        return "-fx-background-color: " + backgroundColor + ";" +
                 "-fx-background-image: " + flowerPath +
                 "-fx-background-size: contain; " +      // Set the total size of the spritesheet
                 "-fx-background-repeat: no-repeat;";

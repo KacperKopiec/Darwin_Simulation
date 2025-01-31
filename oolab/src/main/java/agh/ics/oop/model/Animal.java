@@ -13,11 +13,11 @@ public class Animal implements WorldElement, Comparable<Animal> {
     private final Genotype genotype;
     private int energy;
     private int age = 0;
-    private int dayOfDeath;
+    private int dayOfDeath; // wyjątkowo polecam Integer
     private int grassConsumed = 0;
     private final List<Animal> children = new ArrayList<Animal>();
     private final static Random rand = new Random();
-    private final int genotypeStartingIndex;
+    private final int genotypeStartingIndex; // czy to cecha zwierzęcia?
     private final boolean oldNotGold;
     private final String animalPath;
 
@@ -27,7 +27,8 @@ public class Animal implements WorldElement, Comparable<Animal> {
         this.energy = energy;
         this.oldNotGold = oldNotGold;
         this.genotypeStartingIndex = genotypeStartingIndex;
-        this.animalPath = "url('animal" + (int)(Math.random() * 4 + 1) + ".png');";;
+        this.animalPath = "url('animal" + (int) (Math.random() * 4 + 1) + ".png');";
+        ; // co to?
     }
 
     public Vector2d getPosition() {
@@ -49,46 +50,46 @@ public class Animal implements WorldElement, Comparable<Animal> {
     public int getGrassConsumed() {
         return this.grassConsumed;
     }
+
     public int getDayOfDeath() {
         return this.dayOfDeath;
     }
+
     public int getActiveGene() {
         return (genotypeStartingIndex + age) % genotype.getSize();
     }
 
     public void move(MoveValidator validator, int rightEdge) {
         // possible skip of move due to age, probability stops increasing after 80%
-        if (!oldNotGold || rand.nextInt(100) >= min(age, 80)) {
+        if (!oldNotGold || rand.nextInt(100) >= min(age, 80)) { // nie da się tego zrobić lepiej niż if'em?
             for (int i = 0; i < this.genotype.getGene((genotypeStartingIndex + age) % genotype.getSize()); i++) {
                 this.orientation = orientation.next();
             }
 
             Vector2d newPosition = this.position.add(this.orientation.toUnitVector());
             if (!validator.canMoveTo(newPosition)) {
-                this.orientation=orientation.next().next().next().next();
-            }
-            else if (!validator.aroundTheWorld(newPosition)) {
+                this.orientation = orientation.next().next().next().next();
+            } else if (!validator.aroundTheWorld(newPosition)) {
                 this.position = new Vector2d(Math.abs(position.getX() - rightEdge), position.getY());
-            }
-            else this.position = newPosition;
+            } else this.position = newPosition;
         }
         this.energy -= 1;
         this.age++;
     }
 
-    public Genotype getGenotype(){
+    public Genotype getGenotype() {
         return this.genotype;
     }
 
-    public int getEnergy(){
+    public int getEnergy() {
         return this.energy;
     }
 
-    public int getAge(){
+    public int getAge() {
         return this.age;
     }
 
-    public int getNumberOfChildren(){
+    public int getNumberOfChildren() {
         return this.children.size();
     }
 
@@ -102,7 +103,7 @@ public class Animal implements WorldElement, Comparable<Animal> {
         this.children.add(baby);
     }
 
-    public void unlive(int dayOfSimulation) {
+    public void unlive(int dayOfSimulation) { // to nie jest prawdziwe słowo, nie polecam takich nazw
         this.dayOfDeath = dayOfSimulation;
     }
 
@@ -152,6 +153,6 @@ public class Animal implements WorldElement, Comparable<Animal> {
         int particularEnergy = getEnergy();
         int descendants = countDescendants();
         int dayOfDeath = getDayOfDeath();
-        return new SubjectStatistics(genotype,activeGene,particularEnergy,grassConsumed,particularChildren,descendants,particularAge,dayOfDeath);
+        return new SubjectStatistics(genotype, activeGene, particularEnergy, grassConsumed, particularChildren, descendants, particularAge, dayOfDeath);
     }
 }

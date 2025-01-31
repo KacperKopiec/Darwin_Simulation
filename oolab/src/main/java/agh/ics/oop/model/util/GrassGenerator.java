@@ -17,7 +17,7 @@ public class GrassGenerator implements Iterable<Grass> {
         this.height = height;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                if ((int)Math.ceil(0.4 * height) <= y + 1 && y + 1 <= (int)Math.floor(0.6 * height)) {
+                if ((int) Math.ceil(0.4 * height) <= y + 1 && y + 1 <= (int) Math.floor(0.6 * height)) {
                     equator.add(new Grass(new Vector2d(x, y)));
                 } else {
                     steppes.add(new Grass(new Vector2d(x, y)));
@@ -27,7 +27,7 @@ public class GrassGenerator implements Iterable<Grass> {
     }
 
     public void addEatenGrassBack(Grass grass) {
-        if ((int)Math.ceil(0.4 * height) <= grass.getPosition().getY() + 1 && grass.getPosition().getY() + 1 <= (int)Math.floor(0.6 * height)) {
+        if ((int) Math.ceil(0.4 * height) <= grass.getPosition().getY() + 1 && grass.getPosition().getY() + 1 <= (int) Math.floor(0.6 * height)) {
             equator.add(grass);
         } else {
             steppes.add(grass);

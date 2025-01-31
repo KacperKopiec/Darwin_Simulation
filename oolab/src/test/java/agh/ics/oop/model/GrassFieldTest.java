@@ -46,7 +46,7 @@ public class GrassFieldTest {
 
     @Test
     void testAnimalMovement() {
-        Animal animal = new Animal(new Vector2d(config.mapWidth()/2, config.mapHeight()/2), new Genotype(1),80,false,0);
+        Animal animal = new Animal(new Vector2d(config.mapWidth() / 2, config.mapHeight() / 2), new Genotype(1), 80, false, 0);
 
         Vector2d originalPosition = animal.getPosition();
 
@@ -66,7 +66,7 @@ public class GrassFieldTest {
                 .findFirst()
                 .orElseThrow();
 
-        Animal animal = new Animal(grass.getPosition(), new Genotype(config.genotypeLength()), config.baseEnergy(),  config.oldNotGold(), 0);
+        Animal animal = new Animal(grass.getPosition(), new Genotype(config.genotypeLength()), config.baseEnergy(), config.oldNotGold(), 0);
         grassField.place(animal);
 
         grassField.eatingStage();
@@ -78,8 +78,8 @@ public class GrassFieldTest {
 
     @Test
     void testBreedingAnimals() {
-        Animal parent1 = new Animal(new Vector2d(0, 0), new Genotype(config.genotypeLength()), config.readyToParent(),  config.oldNotGold(), 0);
-        Animal parent2 = new Animal(new Vector2d(0, 0), new Genotype(config.genotypeLength()), config.readyToParent() ,  config.oldNotGold(), 0);
+        Animal parent1 = new Animal(new Vector2d(0, 0), new Genotype(config.genotypeLength()), config.readyToParent(), config.oldNotGold(), 0);
+        Animal parent2 = new Animal(new Vector2d(0, 0), new Genotype(config.genotypeLength()), config.readyToParent(), config.oldNotGold(), 0);
         grassField.place(parent1);
         grassField.place(parent2);
 
@@ -97,12 +97,12 @@ public class GrassFieldTest {
                 .map(element -> (Animal) element)
                 .toList();
 
-        assertTrue(animalsAtPositionAfter.size()>numberOfAnimals);
+        assertTrue(animalsAtPositionAfter.size() > numberOfAnimals);
     }
 
     @Test
     void testClearingDeadAnimals() {
-        Animal animal = new Animal(new Vector2d(0, 0), new Genotype(config.genotypeLength()), 0,  config.oldNotGold(), 0);
+        Animal animal = new Animal(new Vector2d(0, 0), new Genotype(config.genotypeLength()), 0, config.oldNotGold(), 0);
         grassField.place(animal);
 
         grassField.clearingStage();

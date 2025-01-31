@@ -17,9 +17,9 @@ public record SimulationConfig(int basePopulation,
                                int readyToParent,
                                int numberOfReservoirs,
                                boolean oldNotGold,
-                                boolean saveStats) {
+                               boolean saveStats) {
 
-    public Map<String, Integer> changeToJsonFormat() {
+    public Map<String, Integer> changeToJsonFormat() { // mapa to nie do końca "Json format"
         Map<String, Integer> map = new HashMap<>();
         map.put("basePopulation", basePopulation);
         map.put("baseGrassNumber", baseGrassNumber);
